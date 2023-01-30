@@ -79,7 +79,7 @@ Vue.createApp( {
       const url =`${this.apiUrl}api/${this.api_path}/admin/products`;
       axios.get(`${url}`) 
         .then((res)=>{ 
-        console.log(res); 
+        console.log(res.data); 
         alert('取得通過')
         this.products = res.data.products;
         
@@ -92,7 +92,7 @@ Vue.createApp( {
     }
   },
   mounted(){
-    const token = document.cookie.replace(/(?:(?:^|.*;\s*)myToken\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+    const token = document.cookie.replace(/(?:(?:^|.*;\s*)week2Token\s*\=\s*([^;]*).*$)|^.*$/, "$1");
     axios.defaults.headers.common['Authorization'] = token;
     this.checkLogin();
   }

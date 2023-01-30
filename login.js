@@ -21,7 +21,7 @@ const app ={
             .then(res => {
                 const {token,expired} = res.data;
                 console.log(token,expired);
-                document.cookie=`myToken=${token};expires=${new Date(expired)};`;
+                document.cookie=`week2Token=${token};expires=${new Date(expired)};`;
                 window.location = 'products.html';
             })
             .catch(err => {
