@@ -1,9 +1,11 @@
-import { createApp } from 'https://cdnjs.cloudflare.com/ajax/libs/axios/0.24.0/axios.min.js';
 
-const url = 'https://vue3-course-api.hexschool.io/v2/admin/signin'
+
+const url = 'https://vue3-course-api.hexschool.io/v2/';
 const path = 'bassjim';
 
-const app = createApp({
+console.log(url,path);
+
+const app ={
     data(){
         return{
             user:{
@@ -14,23 +16,19 @@ const app = createApp({
     },
     methods:{
         login(){
-            console.log(this,user);
-            const url =`${site}admin/signin`;
-            axios.post(url,this,user)
+            const site='https://vue3-course-api.hexschool.io/v2/admin/signin';
+            axios.post(`${site}`,this.user)
             .then(res => {
-                const {expire,token} = res.data
-                document.cookie=`myToken=${token};expires=${new Date(expired)};`
-
+                console.log(res);
+                const {token,expired} = res.data;
+                console.log(token,expired);
+                document.cookie=`week2Token=${token};expires=${new Date(expired)};`;
+                window.location = 'products.html';
             })
             .catch(err => {
-                console.error(err); 
+              alert(err.response.data.message);
             })
         }
-    },
-    mounted(){
-        console.log('mounted');
-        console.log(`${site}admin/signin`);
-        
-    }
-});
-app.mount('#app')
+    },   
+}
+Vue.createApp(app).mount("#app")
