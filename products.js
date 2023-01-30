@@ -59,32 +59,40 @@ Vue.createApp( {
     return{
       apiUrl:'https://vue3-course-api.hexschool.io/v2/',
       api_path:'bassjim',
-      tempProduct: {},
       products:[],
+      tempProduct: {},
+      
     }
   },
   methods:{
-    checkLogin(){
-
-  
+    checkLogin(){ 
       axios.post(`${this.apiUrl}api/user/check`)
       .then((res) =>{
         console.log(res);
+        alert('通過')
         this.getProducts();
-      })
+      });
+      
       
     },
     getProducts(){
-      const url =`${apiUrl}/v2/api/${api_path}/admin/products/all`;
-      axios.get(url =>{
-        console.log(res);
+      const url =`${this.apiUrl}api/${this.api_path}/admin/products`;
+      axios.get(`${url}`) 
+        .then((res)=>{ 
+        console.log(res); 
+        alert('取得通過')
         this.products = res.data.products;
+        
       })
       
+      .catch((err) => {
+        alert('失敗');
+        console.log(err);
+      });
     }
   },
   mounted(){
-    const token = document.cookie.replace(/(?:(?:^|.*;\s*)week2Token\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+    const token = document.cookie.replace(/(?:(?:^|.*;\s*)myToken\s*\=\s*([^;]*).*$)|^.*$/, "$1");
     axios.defaults.headers.common['Authorization'] = token;
     this.checkLogin();
   }

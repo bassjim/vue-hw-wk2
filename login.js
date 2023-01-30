@@ -19,10 +19,9 @@ const app ={
             const site='https://vue3-course-api.hexschool.io/v2/admin/signin';
             axios.post(`${site}`,this.user)
             .then(res => {
-                console.log(res);
                 const {token,expired} = res.data;
                 console.log(token,expired);
-                document.cookie=`week2Token=${token};expires=${new Date(expired)};`;
+                document.cookie=`myToken=${token};expires=${new Date(expired)};`;
                 window.location = 'products.html';
             })
             .catch(err => {
