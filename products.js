@@ -80,7 +80,7 @@ Vue.createApp( {
       axios.get(`${url}`) 
         .then((res)=>{ 
         console.log(res.data); 
-        alert('取得通過')
+        alert('取得通過');
         this.products = res.data.products;
         
       })
